@@ -1,0 +1,4 @@
+文件管理工具：
+	everything 下载站：官网或者百度云下载
+	dorplt  	 下载站：http://www.dropitproject.com/   或者百度云
+	ccleaner 	  下载站：https://www.ccleaner.com/ccleaner   或者百度云

@@ -1,0 +1,15 @@
+1：切换到root权限
+	su root 回车后输入密码登录
+2：设置语言
+	vim /etc/default/locale 进入编辑
+	LANG=zh_CN.UTF-8（中文）
+	LC_ALL=en_US.UTF-8（系统全局使用英文）
+	#LC_ALL=zh_CN.UTF-8（系统全局使用中文）
+
+	#LANGUAGE=en_US.UTF-8（不知道）
+3：设置音频等：
+	sudo raspi-config
+
+4：安装qq方法？
+wget https://qd.myapp.com/myapp/qqteam/linuxQQ/linuxqq_2.0.0-b1-1024_amd64.deb
+sudo dpkg -i linuxqq_2.0.0-b1-1024_amd64.deb

@@ -1,0 +1,100 @@
+新：
+	参照官网：https://redis.io/download
+	安装
+	使用以下命令下载，提取和编译Redis：
+
+	$ wget http://download.redis.io/releases/redis-5.0.7.tar.gz
+	$ tar xzf redis-5.0.7.tar.gz
+	$ cd redis-5.0.7
+	$ make
+	src 目录 中现在提供了已编译的二进制文件 。使用以下命令运行Redis：
+
+	$ src/redis-server
+	您可以使用内置客户端与Redis进行交互：
+
+	$ src/redis-cli
+	redis> set foo bar
+	OK
+	redis> get foo
+	"bar"
+
+其他设置：
+	redis.conf（配置文件）
+	vi /usr/local/redis/etc/redis.conf //将daemonize no 改成daemonize yes
+	注释掉bind 127.0.0.1不然只能本地访问
+
+开机自启动：
+	编辑/etc/rc.d/rc.local文件，添加启动的路径和文件
+	如/usr/local/redis/bin/redis-server
+	或者其他自定义的可执行文件
+
+	由于在centos7中/etc/rc.d/rc.local的权限被降低了，所以需要赋予其可执行权
+	# 赋予可执行权限指令：chmod +x 【文件名或者全路径文件名】
+	chmod +x /etc/rc.d/rc.local
+
+
+
+
+
+旧：
+安装：
+
+1.获取redis资源
+
+　　wget http://download.redis.io/releases/redis-4.0.8.tar.gz
+
+2.解压
+
+　　tar -xzvf redis-4.0.8.tar.gz
+
+3.安装
+
+　　cd redis-4.0.8
+
+　　make
+
+ 5.配置redis为后台启动
+	修改配置文件的daemonize 属性
+　　vi /usr/local/redis/etc/redis.conf //将daemonize no 改成daemonize yes
+
+6.将redis加入到开机启动
+
+　　vi /etc/rc.local //在里面添加内容：/usr/local/redis/bin/redis-server /usr/local/redis/etc/redis.conf (意思就是开机调用这段开启redis的命令)
+
+7.开启redis
+
+　　/usr/local/redis/bin/redis-server /usr/local/redis/etc/redis.conf 
+
+ 
+#启动redis服务端
+$ src/redis-server
+
+常用命令　　
+
+　　redis-server /usr/local/redis/etc/redis.conf //启动redis
+
+　　pkill redis  //停止redis
+
+　　卸载redis：
+
+　　　　rm -rf /usr/local/redis //删除安装目录
+
+　　　　rm -rf /usr/bin/redis-* //删除所有redis相关命令脚本
+
+　　　　rm -rf /root/download/redis-4.0.4 //删除redis解压文件夹
+
+
+
+8-启动redis:
+两种方式：
+redis-server &
+加上`&`号使redis以后台程序方式运行
+或者是
+
+redis-server
+
+
+9-检测后台进程是否存在
+ps -ef |grep redis
+10-检测6379端口是否在监听
+netstat -lntp | grep 6379

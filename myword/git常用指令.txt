@@ -1,0 +1,13 @@
+1：查看分支
+	# 1.查看所有分支
+	> git branch -a
+	 2.查看当前使用分支(结果列表中前面标*号的表示当前使用分支)
+	> git branch
+	3.切换分支
+	> git checkout 分支名
+
+创建分支
+	创建新分支 dev
+ 	git branch dev
+	切换到该分支
+	 git checkout dev

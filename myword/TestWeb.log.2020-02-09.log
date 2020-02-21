@@ -1,0 +1,4 @@
+2020-02-09 15:38:49.161 [main] DEBUG com.logback.log.LogTest - debug=1
+2020-02-09 15:38:49.167 [main] INFO  com.logback.log.LogTest - info=2
+2020-02-09 15:38:49.168 [main] WARN  com.logback.log.LogTest - warn=3
+2020-02-09 15:38:49.168 [main] ERROR com.logback.log.LogTest - error=4

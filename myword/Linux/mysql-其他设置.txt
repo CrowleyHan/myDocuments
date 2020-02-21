@@ -1,0 +1,23 @@
+Linux服务器上在线装了个MySQL,但是部署web应用时一直报后台一直报错：Table 'xxx' doesn't exist。
+
+本地测试一直都是正常的，同样的代码，同样的数据库，表是存在的，但是找不到。
+
+原因：linux下mysql默认数据库表名和数据库名区分大小写
+
+解决方案：更改mysql设置，使其不区分大小写，具体步骤
+
+1.cd /etc
+
+2. vi my.cnf
+
+3.在[mysqld]节点下 增加 一句话
+
+lower_case_table_names = 1
+
+4.编辑保存完 重启mysql服务才能生效。
+
+systemctl restart mysqld
+
+若命令不熟悉，可以用notepad++编译服务器上相应的文件即可，然后重启mysql
+
+完美解决。

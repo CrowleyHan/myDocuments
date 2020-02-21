@@ -1,0 +1,87 @@
+mysql 2003报错：MySQL服务未启动或者防火墙
+
+service iptables stop 【防火墙关闭】
+
+#查看正在运行的端口
+
+sudo netstat -tunlp
+此命令中使用的选项具有以下含义：
+
+-t - 显示 TCP 端口。
+-u - 显示 UDP 端口。
+-n - 显示数字地址而不是主机名。
+-l - 仅显示侦听端口。
+-p - 显示进程的 PID 和名称。仅当您以 root 或 sudo 用户身份运行命令时，才会显示此信息。
+
+查看***服务：
+
+ps aux|grep ***
+
+检查后台进程是否正在运行
+
+ps -ef |grep redis
+
+#检测6379端口是否在监听
+
+netstat -lntp | grep 6379
+
+排查mysql：
+	service mysql status 【查看是否启动】
+	service mysql restart 【启动mysql服务】
+	rpm -ga|grep mysql 【查看mysql进程是否存在】
+	kill -9 mysql 【杀死进程】
+	重启MySQL服务
+	
+SVN
+首先要明确CentOS7的默认防火墙为firewallD。subversion的默认端口为3690，如果没有打开会报错：
+
+1： sudo firewall-cmd --permanent --add-service=telnet
+2： sudo firewall-cmd --permanent --add-port=3690/tcp
+3： sudo firewall-cmd --reload
+
+centOS 7 防火墙开启、关闭与查看状态：
+systemctl start firewalld
+systemctl stop firewalld
+systemctl status firewalld
+
+
+查看SVN服务：
+
+ps aux|grep svnserve    
+
+---------------------------------------------------------
+centos7重启防火墙后开放端口设置
+
+查看已经开放的端口：
+
+firewall-cmd --list-ports
+开启端口
+
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+
+1：输入命令查看防火墙的状态；
+
+	firewall-cmd --state  ；
+
+2：如果上一步处于关闭状态，输入命令：
+
+	systemctl start firewalld.service；
+
+3：开启8080端口，输入命令：
+
+	firewall-cmd --zone=public --add-port=8080/tcp --permanent
+		让我们来解释一下上一个命令：
+
+		--zone=public：表示作用域为公共的；
+
+		--add-port=8080/tcp：添加tcp协议的端口8080；
+
+		--permanent：永久生效，如果没有此参数，则只能维持当前服务生命周期内，重新启动后失效；
+
+4：输入命令重启防火墙；
+
+	systemctl restart firewalld.service；
+
+5：输入命令重新载入配置；
+
+	firewall-cmd --reload；
